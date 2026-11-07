@@ -58,7 +58,7 @@ jobs:
       # the triggering run. No artifacts are downloaded and no event text (commit messages,
       # branch names) is used, which keeps the classic workflow_run privilege-escalation
       # pattern out. Only numeric run ids ever leave the event.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: .github/scripts
           persist-credentials: false

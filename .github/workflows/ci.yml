@@ -73,7 +73,7 @@ jobs:
       MINIO_USE_SSL: "false"
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       # The API integration suite is 11 of this job's 14 minutes. It exercises
       # Postgres, Prisma and MinIO, so a PR that touches only docs, workflows or
@@ -638,7 +638,7 @@ jobs:
       actions: read
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
@@ -661,7 +661,7 @@ jobs:
       security-events: write
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # required for gitleaks to access commit history
 
@@ -691,7 +691,7 @@ jobs:
       contents: read # actions/checkout
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v6
         with:
@@ -725,7 +725,7 @@ jobs:
     permissions:
       contents: read # actions/checkout
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v6
         with:
@@ -788,7 +788,7 @@ jobs:
     # cleanly; we use the dorny/paths-filter pattern instead. The pre-step decides
     # whether the heavy steps run.
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Detect visual-relevant changes
         id: changes
@@ -913,7 +913,7 @@ jobs:
     permissions:
       contents: read # actions/checkout
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v6
         with:
@@ -1007,7 +1007,7 @@ jobs:
             context: .
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1

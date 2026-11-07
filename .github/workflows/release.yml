@@ -84,7 +84,7 @@ jobs:
       # No `ref:` on purpose: the gate script must come from the same commit as this workflow
       # file (the tagged commit on a release event, the dispatched branch on workflow_dispatch),
       # so dispatching an old tag from main still finds the script.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: .github/scripts
           persist-credentials: false
@@ -236,7 +236,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: ${{ env.RELEASE_TAG }}
 
