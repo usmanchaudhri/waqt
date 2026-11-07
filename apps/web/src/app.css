@@ -3240,3 +3240,13 @@ button.approval-row:disabled {
 .sp-cell--drop-blocked {
   cursor: not-allowed;
 }
+
+/* The Waqt lockup is deep green, drawn for a light surface. On a dark
+   sidebar or card it needs the same ivory field it was designed on. */
+html[data-mode="dark"] img[src*="clokr-wordmark"],
+html[data-mode="dark"] img[src*="clokr-logo"],
+html[data-mode="dark"] img[src*="clokr-icon"] {
+  background: #f6f1e6;
+  border-radius: 12px;
+  padding: 4px 8px;
+}

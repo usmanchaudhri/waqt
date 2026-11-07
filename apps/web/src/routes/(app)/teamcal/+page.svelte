@@ -238,6 +238,8 @@
   }
 </script>
 
+<svelte:head><title>Team-Kalender – Clokr</title></svelte:head>
+
 <PageHead
   eyebrow="Team"
   title="Team-Kalender"

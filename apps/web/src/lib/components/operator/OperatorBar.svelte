@@ -41,7 +41,7 @@
 
 <header class="op-bar" data-testid="op-bar">
   <div class="op-brand">
-    <img src="/clokr-icon.png" alt="" width="28" height="28" class="op-mark" />
+    <img src="/clokr-icon.png?v=waqt" alt="" width="28" height="28" class="op-mark" />
     <span class="op-word">Clokr</span>
     <span class="badge badge-purple" data-testid="op-badge">Betreiber</span>
   </div>

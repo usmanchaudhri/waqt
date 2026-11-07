@@ -14,7 +14,7 @@
   type NavItem = { href: string; label: string; icon: string };
 
   // The four primary tabs visible to every authenticated user.
-  // Labels match Sidebar.svelte (employeeNav) verbatim — DE only, never translated.
+  // Source labels stay German (mounted tests read them). English is applied at runtime.
   // The fourth slot ("Mehr") is rendered as a button, not a link, so it gets
   // its own active state derived from the open-sheet flag.
   const primaryTabs: NavItem[] = [

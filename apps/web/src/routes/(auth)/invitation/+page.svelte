@@ -69,7 +69,7 @@
 <div class="login-page">
   <div class="login-card">
     <div class="login-logo">
-      <img src="/clokr-logo.png" alt="Clokr" class="login-logo-img" />
+      <img src="/clokr-logo.png?v=waqt" alt="Waqt" class="login-logo-img" />
     </div>
 
     {#if pageState === "invalid"}

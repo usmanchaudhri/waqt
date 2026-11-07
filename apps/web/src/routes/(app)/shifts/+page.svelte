@@ -25,6 +25,7 @@
     type CollisionSummary,
   } from "$lib/phorest/appointmentCollisions";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
+  import { locale } from "$lib/i18n/locale";
 
   // ── Types ──────────────────────────────────────────────────────────────────
   interface Employee {
@@ -1062,13 +1063,14 @@
   }
 
   // ── Formatters ─────────────────────────────────────────────────────────────
+  const dateLocale = $derived($locale === "en" ? "en-US" : "de-DE");
   function fmtRange(): string {
     if (!week) return "";
     const first = new Date(week.weekDays[0]);
     const last = new Date(week.weekDays[6]);
     const fOpts: Intl.DateTimeFormatOptions = { day: "numeric", month: "short" };
     const lOpts: Intl.DateTimeFormatOptions = { day: "numeric", month: "short", year: "numeric" };
-    return `${first.toLocaleDateString("de-DE", fOpts)} – ${last.toLocaleDateString("de-DE", lOpts)}`;
+    return `${first.toLocaleDateString(dateLocale, fOpts)} – ${last.toLocaleDateString(dateLocale, lOpts)}`;
   }
   function fmtDayHeader(iso: string): string {
     const d = new Date(iso);

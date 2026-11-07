@@ -4,6 +4,7 @@
   // visible) and per-entry details only — it sums nothing, by design (see salon-time-entries.ts).
   // Mountable: no `$app` import, no request; the page loads the data and passes the status.
   import { format } from "date-fns";
+  import { locale } from "$lib/i18n/locale";
   import type { SalonViewDay, SalonViewStatus } from "$lib/team/salon-time-entries";
   import { salonNameLabel } from "$lib/salons/page-scope";
   import SalonScopeLabel from "./SalonScopeLabel.svelte";
@@ -21,6 +22,17 @@
 
   function time(iso: string): string {
     return format(new Date(iso), "HH:mm");
+  }
+
+  function dayHeading(day: SalonViewDay): string {
+    if ($locale !== "en") return day.label;
+    const [year, month, date] = day.dateKey.split("-").map(Number);
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "short",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }).format(new Date(year, month - 1, date));
   }
 
   function hoursMinutes(minutes: number | null): string {
@@ -62,7 +74,7 @@
     {/if}
     {#each days as day (day.dateKey)}
       <section class="card salon-view-day">
-        <h3 class="salon-view-day-title">{day.label}</h3>
+        <h3 class="salon-view-day-title">{dayHeading(day)}</h3>
         <div class="table-wrapper">
           <table class="data-table">
             <thead>

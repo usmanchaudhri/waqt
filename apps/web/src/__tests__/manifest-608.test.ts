@@ -39,8 +39,8 @@ describe("manifest.json", () => {
     expect(manifest.scope).toBe("/");
     expect(manifest.start_url).toBe("/dashboard");
     expect(manifest.display).toBe("standalone");
-    expect(manifest.lang).toBe("de");
-    expect(manifest.description).toContain("Zeiterfassung");
+    expect(manifest.lang).toBe("en");
+    expect(manifest.description).toContain("time tracking");
   });
 
   it("declares no combined 'any maskable' icon", () => {

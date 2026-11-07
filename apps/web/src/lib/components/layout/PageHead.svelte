@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import { locale } from "$lib/i18n/locale";
+  import { translateUi } from "$lib/i18n/localize";
 
   interface Props {
     /** Serif italic eyebrow line, e.g. "Mein Bereich". */
@@ -29,6 +31,13 @@
 
   let { eyebrow, title, accent, sub, actions }: Props = $props();
 
+  // Translate the whole heading before the accent split. The italic word is its own
+  // element, so a text-node walk never sees "Schichtplanung" as one string.
+  const shownEyebrow = $derived(translateUi(eyebrow, $locale));
+  const shownTitle = $derived(translateUi(title, $locale));
+  const shownAccent = $derived(accent ? translateUi(accent, $locale) : "");
+  const shownSub = $derived(sub ? translateUi(sub, $locale) : "");
+
   // Derive a [pre, match, post] split for the H1.
   //
   // 1. Explicit `accent` (case-sensitive substring match): first occurrence wrapped.
@@ -40,23 +49,23 @@
   // Both branches output element text only — never `{@html}` — so prop values
   // remain escaped (threat register T-27-01).
   const titleParts = $derived.by(() => {
-    if (accent) {
-      const idx = title.indexOf(accent);
-      if (idx === -1) return { pre: title, match: "", post: "" };
+    if (shownAccent) {
+      const idx = shownTitle.indexOf(shownAccent);
+      if (idx === -1) return { pre: shownTitle, match: "", post: "" };
       return {
-        pre: title.slice(0, idx),
-        match: accent,
-        post: title.slice(idx + accent.length),
+        pre: shownTitle.slice(0, idx),
+        match: shownAccent,
+        post: shownTitle.slice(idx + shownAccent.length),
       };
     }
     // autoAccent: find last separator (- or whitespace), italicize last token.
-    const matches = [...title.matchAll(/[\s-]/g)];
-    if (matches.length === 0) return { pre: title, match: "", post: "" };
+    const matches = [...shownTitle.matchAll(/[\s-]/g)];
+    if (matches.length === 0) return { pre: shownTitle, match: "", post: "" };
     const last = matches[matches.length - 1];
     const splitIdx = (last.index ?? 0) + 1;
     return {
-      pre: title.slice(0, splitIdx),
-      match: title.slice(splitIdx),
+      pre: shownTitle.slice(0, splitIdx),
+      match: shownTitle.slice(splitIdx),
       post: "",
     };
   });
@@ -65,14 +74,14 @@
 <header class="page-head">
   <div class="page-head-text">
     <div class="brand-rule" aria-hidden="true"></div>
-    <div class="eyebrow" translate="no">{eyebrow}</div>
+    <div class="eyebrow" translate="no">{shownEyebrow}</div>
     {#if titleParts.match}
       <h1 translate="no">{titleParts.pre}<em>{titleParts.match}</em>{titleParts.post}</h1>
     {:else}
-      <h1 translate="no">{title}</h1>
+      <h1 translate="no">{shownTitle}</h1>
     {/if}
-    {#if sub}
-      <p class="sub">{sub}</p>
+    {#if shownSub}
+      <p class="sub">{shownSub}</p>
     {/if}
   </div>
   {#if actions}

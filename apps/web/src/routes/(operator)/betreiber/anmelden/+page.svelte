@@ -39,7 +39,7 @@
 
 <main id="main-content" class="op-signin-page" data-testid="op-signin-page">
   <div class="op-brand">
-    <img src="/clokr-wordmark.png" alt="Clokr" class="op-wordmark" height="32" />
+    <img src="/clokr-wordmark.png?v=waqt" alt="Waqt" class="op-wordmark" height="32" />
     <span class="badge badge-purple">Betreiber</span>
   </div>
 

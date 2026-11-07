@@ -11,11 +11,13 @@
   import "$stores/density";
   import "$stores/skin";
   // Side-effect import: ensures DE + EN i18n bundles ship in the built asset (I18N-02).
-  // No runtime locale switching this milestone — DE remains active everywhere.
   import "$lib/i18n";
+  import { locale } from "$lib/i18n/locale";
+  import { applyLocale } from "$lib/i18n/localize";
   import Toast from "$lib/components/ui/Toast.svelte";
   import ErrorBoundary from "$lib/components/ui/ErrorBoundary.svelte";
   import { onMount } from "svelte";
+  import { get } from "svelte/store";
   import { clientLogger } from "$lib/utils/logger";
 
   interface Props {
@@ -30,6 +32,22 @@
   // idempotent, so an extra call from a nested layout stays harmless.
   onMount(() => {
     clientLogger.install();
+    const paint = (value: typeof $locale) => applyLocale(document.documentElement, value);
+    const unsubscribe = locale.subscribe(paint);
+    const observer = new MutationObserver(() => {
+      paint(get(locale));
+    });
+    observer.observe(document.documentElement, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["placeholder", "title", "aria-label", "alt"],
+    });
+    return () => {
+      unsubscribe();
+      observer.disconnect();
+    };
   });
 </script>
 

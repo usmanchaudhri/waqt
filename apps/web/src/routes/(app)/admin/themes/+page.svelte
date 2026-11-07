@@ -179,7 +179,7 @@
   </Section>
 
   <!-- Language picker (stub) -->
-  <Section title="Sprache" sub="UI-Sprache (Englisch folgt in v1.6)">
+  <Section title="Sprache" sub="UI-Sprache">
     <LanguageToggle variant="segmented" />
   </Section>
 </SectionStack>

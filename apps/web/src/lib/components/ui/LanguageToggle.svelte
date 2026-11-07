@@ -1,13 +1,10 @@
 <script lang="ts">
-  import { toasts } from "$stores/toast";
+  import { locale, type Locale } from "$lib/i18n/locale";
 
   /**
-   * LanguageToggle (Phase 33-02, I18N-03).
-   *
-   * Shared DE/EN chip toggle (stub). DE is always active; clicking EN shows a
-   * v1.6 toast and leaves the UI untouched. Used in the topbar (compact) and
-   * Admin Themes (segmented). Per SHELL-04 the toggle is a visible affordance
-   * only — runtime locale switching ships in I18N-04 (v1.6).
+   * LanguageToggle. English is the default. Deutsch switches the visible UI
+   * back to the original German strings. Used in the topbar (compact) and
+   * Admin Themes (segmented).
    */
   interface Props {
     variant?: "segmented" | "compact";
@@ -15,40 +12,45 @@
 
   let { variant = "segmented" }: Props = $props();
 
-  function handleEnglish() {
-    toasts.info("Sprachumschaltung folgt in v1.6");
+  function select(next: Locale) {
+    locale.set(next);
   }
 
-  function handleGerman() {
-    // No-op: DE is already the active language for v1.5.
+  function toggle() {
+    locale.set($locale === "en" ? "de" : "en");
   }
 </script>
 
 {#if variant === "segmented"}
   <div class="seg" role="group" aria-label="Sprache auswählen">
-    <!--
-      Note: no `aria-pressed` here. Per WR-02 review (Phase 33), the segmented
-      variant is a v1.5 stub — clicking "English" only fires a toast and does
-      not toggle state. A hardcoded `aria-pressed` would lie to AT users about
-      a togglable state that never changes. The `.active` class is a visual
-      affordance only; the "Bald" badge signals the not-yet state. Real toggle
-      semantics ship with I18N-04 (v1.6).
-    -->
-    <button type="button" class="seg-btn active" onclick={handleGerman}> Deutsch </button>
-    <button type="button" class="seg-btn" onclick={handleEnglish}>
+    <button
+      type="button"
+      class="seg-btn"
+      class:active={$locale === "de"}
+      aria-pressed={$locale === "de"}
+      onclick={() => select("de")}
+    >
+      Deutsch
+    </button>
+    <button
+      type="button"
+      class="seg-btn"
+      class:active={$locale === "en"}
+      aria-pressed={$locale === "en"}
+      onclick={() => select("en")}
+    >
       English
-      <span class="badge-soon">Bald</span>
     </button>
   </div>
 {:else}
   <button
     type="button"
     class="lang-btn"
-    onclick={handleEnglish}
+    onclick={toggle}
     title="Sprache"
     aria-label="Sprache wechseln"
   >
-    DE
+    {$locale === "en" ? "EN" : "DE"}
   </button>
 {/if}
 
@@ -90,21 +92,6 @@
     background: var(--bg-card);
     color: var(--text);
     box-shadow: var(--shadow-sm);
-  }
-
-  /* "Bald" badge — segmented EN affordance, signals stub state. */
-  .badge-soon {
-    font-family: var(--font-sans);
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    padding: 2px 6px;
-    margin-left: 6px;
-    background: var(--brand-soft);
-    color: var(--brand);
-    border-radius: var(--r-pill);
-    line-height: 1;
   }
 
   /* Compact variant — matches the .lang-btn recipe from Topbar.svelte. */

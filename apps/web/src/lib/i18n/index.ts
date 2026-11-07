@@ -1,18 +1,17 @@
-// i18n bundle (DE + EN). Bundled per I18N-02; no runtime locale switching this milestone.
-// The presence of this re-export ensures BOTH locales end up in the built asset
-// (verifiable via `pnpm --filter @clokr/web build` + grep on .svelte-kit/output).
+// i18n bundle (DE + EN). Both locales ship in the build. English is active unless
+// the language toggle (or clokr.locale in localStorage) selects German.
+import { get } from "svelte/store";
 import { de, type I18nKey } from "./de";
 import { en } from "./en";
+import { locale, type Locale } from "./locale";
 
 export { de, type I18nKey, type I18nStrings } from "./de";
 export { en } from "./en";
-export type Locale = "de" | "en";
-export const DEFAULT_LOCALE: Locale = "de";
+export { locale, type Locale } from "./locale";
+export const DEFAULT_LOCALE: Locale = "en";
 
 /**
- * Lookup a UI string by key. v1.5 stub: always returns the German value.
- * Runtime locale switching is deferred to v1.6 (I18N-04 in REQUIREMENTS.md);
- * the EN bundle is intentionally bundled (I18N-02) but not consulted here.
+ * Lookup a UI string by key in the active locale. English is the default.
  *
  * Overloads narrow the return type at the call site: keys whose value is a
  * `readonly string[]` (e.g. `months`, `dow`) resolve to `readonly string[]`;
@@ -29,7 +28,7 @@ type ArrayKey = {
 export function t(key: StringKey): string;
 export function t(key: ArrayKey): readonly string[];
 export function t(key: I18nKey): string | readonly string[] {
-  return de[key];
+  return (get(locale) === "en" ? en : de)[key];
 }
 
 // Pin DE + EN bundles to globalThis so tree-shaking cannot eliminate them when this
@@ -37,7 +36,6 @@ export function t(key: I18nKey): string | readonly string[] {
 // uses `window.I18N`; we mirror that shape here so the EN strings are grep-verifiable in
 // the built asset (I18N-02 acceptance criterion).
 declare global {
-  // eslint-disable-next-line no-var
   var __CLOKR_I18N__: { de: typeof de; en: typeof en } | undefined;
 }
 if (typeof globalThis !== "undefined") {

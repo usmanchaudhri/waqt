@@ -83,7 +83,7 @@
 
 <aside class="sidebar" aria-label="Hauptnavigation" data-testid="sidebar">
   <a href="/dashboard" class="sidebar-brand" data-testid="sidebar-brand">
-    <img class="mark" src="/clokr-wordmark.png" alt="Clokr Zeiterfassung" />
+    <img class="mark" src="/clokr-wordmark.png?v=waqt" alt="Waqt" />
   </a>
 
   <div class="sidebar-scroll">

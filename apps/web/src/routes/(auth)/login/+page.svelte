@@ -71,7 +71,7 @@
     <!-- Left brand panel (desktop only) -->
     <div class="login-brand-panel">
       <div class="login-brand-content">
-        <img src="/clokr-logo.png" alt="Clokr" class="login-brand-logo" />
+        <img src="/clokr-logo.png?v=waqt" alt="Waqt" class="login-brand-logo" />
         <h1 class="login-brand-title">Zeiterfassung, die einfach funktioniert.</h1>
         <ul class="login-brand-features">
           <li>
@@ -114,20 +114,6 @@
               stroke-linecap="round"
               stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg
             >
-            Berichte & DATEV-Export
-          </li>
-          <li>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg
-            >
             ArbZG-konform
           </li>
         </ul>
@@ -138,7 +124,7 @@
     <div class="login-form-panel">
       <div class="login-card">
         <div class="login-logo">
-          <img src="/clokr-wordmark.png" alt="Clokr" class="login-logo-img" />
+          <img src="/clokr-wordmark.png?v=waqt" alt="Waqt" class="login-logo-img" />
         </div>
         <h2 class="login-heading">Willkommen zurück</h2>
         <p class="login-subtitle">Bitte melden Sie sich an</p>

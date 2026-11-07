@@ -8,17 +8,17 @@ import { describe, it, expect } from "vitest";
 import { de, en, t } from "../index";
 
 describe("i18n module", () => {
-  it("t('save') returns 'Speichern' (DE is the active locale)", () => {
-    expect(t("save")).toBe("Speichern");
+  it("t('save') returns 'Save' (EN is the active locale)", () => {
+    expect(t("save")).toBe("Save");
   });
 
-  it("t('monthly_close') returns 'Monatsabschluss' (compliance vocabulary preserved)", () => {
-    expect(t("monthly_close")).toBe("Monatsabschluss");
+  it("t('monthly_close') returns 'Monthly close'", () => {
+    expect(t("monthly_close")).toBe("Monthly close");
   });
 
-  it("t('arbzg_break') returns the exact handoff DE string (regression guard for I18N-01)", () => {
+  it("t('arbzg_break') returns the English working-time notice", () => {
     expect(t("arbzg_break")).toBe(
-      "Pflichtpause § 4 ArbZG: bei > 6 Std. mindestens 30 Min. Pause erforderlich.",
+      "Mandatory break § 4 ArbZG: > 6 h requires at least 30 min break.",
     );
   });
 

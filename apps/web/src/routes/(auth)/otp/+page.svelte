@@ -86,8 +86,8 @@
   <div class="login-card">
     <div class="login-logo">
       <img
-        src="/clokr-icon.png"
-        alt="Clokr"
+        src="/clokr-icon.png?v=waqt"
+        alt="Waqt"
         class="login-logo-img"
         width="64"
         height="64"
