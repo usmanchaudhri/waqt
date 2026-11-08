@@ -278,6 +278,20 @@ export const PHRASES: Record<string, string> = {
   "Tag abgeschlossen": "Day complete",
   "Erfasste Arbeitszeit heute": "Working time recorded today",
   "Erneut einstempeln": "Clock in again",
+  "Erneut einstempeln?": "Clock in again?",
+  "Jetzt einstempeln?": "Clock in now?",
+  "Jetzt ausstempeln?": "Clock out now?",
+  "Neuer Eintrag": "New entry",
+  "Änderungen speichern": "Save changes",
+  "Speichern…": "Saving…",
+  "Heutigen Eintrag bearbeiten": "Edit today's entry",
+  Du: "You",
+  "Pause starten — die Zeit wird als Pause vom Eintrag abgezogen":
+    "Start a break — the time is deducted from the entry as a break",
+  "Aktive Pause beenden — die Zeit wird als Pause vom Eintrag abgezogen":
+    "End the active break — the time is deducted from the entry as a break",
+  "Monat abgeschlossen — der Eintrag kann nicht mehr geändert werden.":
+    "Month closed — the entry can no longer be changed.",
   "Heutiger Eintrag": "Today's entry",
   "Hier ist dein Überblick für heute.": "Here is your overview for today.",
   "Du arbeitest gerade": "Currently working",

@@ -98,6 +98,23 @@ function mapParts(raw: string): string {
       greeting[2] === "Morgen" ? "morning" : greeting[2] === "Abend" ? "evening" : "afternoon";
     out = `${greeting[1]}Good ${when}${greeting[3]}${greeting[4]}`;
   }
+  // Whole sentences with a time or a count in the middle. These run before the
+  // word list so "Einstempeln" is not pulled out of "Einstempeln um 09:00".
+  out = out.replace(/Noch (\S+) bis zum Tagesziel/g, "$1 left until the daily target");
+  out = out.replace(/Du stempelst jetzt um (\d{1,2}:\d{2}) ein\./g, "You are clocking in at $1.");
+  out = out.replace(/Du stempelst jetzt um (\d{1,2}:\d{2}) aus\./g, "You are clocking out at $1.");
+  out = out.replace(/Einstempeln um (\d{1,2}:\d{2})/g, "Clocked in at $1");
+  out = out.replace(/Ausstempeln um (\d{1,2}:\d{2})/g, "Clocked out at $1");
+  out = out.replace(
+    /Mit automatischer Pause: beim Speichern wird eine Pause von (\d+) Min\. eingetragen\./g,
+    "With the automatic break: saving records a $1 min break.",
+  );
+  out = out.replace(/Pauschale: (\d+) Min\./g, "Flat rate: $1 min");
+  out = out.replace(/Gesamt: (\d+) Min\./g, "Total: $1 min");
+  out = out.replace(
+    /Der Zeitraum (\S+)–jetzt wird als Pause erfasst\. Der heutige Eintrag wird dadurch wieder geöffnet, seine Netto-Arbeitszeit sinkt und der Pausenwert wird neu berechnet\./g,
+    "The period $1–now is recorded as a break. Today's entry is opened again, its net working time goes down, and the break total is recalculated.",
+  );
   out = applyPhrases(out, LONG_PHRASES);
   out = applyPhrases(out, CALENDAR);
   out = out.replace(

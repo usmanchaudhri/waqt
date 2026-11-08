@@ -72,7 +72,8 @@
     startOfWeek,
     endOfWeek,
   } from "date-fns";
-  import { de } from "date-fns/locale";
+  import { locale } from "$lib/i18n/locale";
+  import { formatLongDate } from "$lib/i18n/date-format";
   import {
     getDayExpectedMinutes,
     monthlyHoursWorkDays,
@@ -2169,9 +2170,7 @@
           {#if !isExempt && rowsOfDay(selectedDate).length > 0}
             <div class="list-day-bar" data-testid="time-entries-list-day-bar">
               <span class="list-day-label"
-                >{format(new Date(selectedDate + "T12:00:00"), "EEEE, d. MMMM", {
-                  locale: de,
-                })}</span
+                >{formatLongDate(new Date(selectedDate + "T12:00:00"), $locale)}</span
               >
               <button
                 class="btn btn-outline btn-sm"
@@ -2417,7 +2416,7 @@
         ? "Eintrag bearbeiten"
         : "Neuer Eintrag"}
     title={formDate
-      ? format(new Date(formDate + "T12:00:00"), "EEEE, d. MMMM yyyy", { locale: de })
+      ? formatLongDate(new Date(formDate + "T12:00:00"), $locale, true)
       : "Zeiteintrag"}
   >
     <!-- Phase 73-03: every interactive element in the time-entry modal gets a

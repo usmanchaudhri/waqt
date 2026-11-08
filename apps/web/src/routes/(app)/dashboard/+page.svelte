@@ -94,6 +94,8 @@
   } from "$lib/dashboard/clock-reminder"; // Issue #609 (D-09, D-14)
   import { format } from "date-fns";
   import { de } from "date-fns/locale";
+  import { locale } from "$lib/i18n/locale";
+  import { formatLongDate } from "$lib/i18n/date-format";
   import { salonContext } from "$stores/salon-context"; // Issue #84 (D-01)
   import {
     TEAM_SALON_UNAVAILABLE_TEXT,
@@ -1638,7 +1640,7 @@
             </div>
             <div class="timer-hd-right">
               <div class="timer-hd-title timer-hd-date">
-                {format(currentTime, "EEEE, d. MMMM", { locale: de })}
+                {formatLongDate(currentTime, $locale)}
               </div>
               <div class="timer-now">
                 {format(currentTime, "HH:mm")}
@@ -1784,8 +1786,8 @@
         <CardHeader
           title="Heutiger Eintrag"
           sub={entryCount
-            ? `${format(currentTime, "EEEE, d. MMMM yyyy", { locale: de })} · ${entryCount.replaceAll(" ", "\u00A0")}`
-            : format(currentTime, "EEEE, d. MMMM yyyy", { locale: de })}
+            ? `${formatLongDate(currentTime, $locale, true)} · ${entryCount.replaceAll(" ", "\u00A0")}`
+            : formatLongDate(currentTime, $locale, true)}
         >
           {#snippet actions()}
             <a
