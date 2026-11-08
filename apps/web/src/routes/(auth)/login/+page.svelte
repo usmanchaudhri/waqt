@@ -10,8 +10,8 @@
   // Issue #608 (D-20): the page a notification tap (or a lost session) was heading to.
   const next = safeAppNext($page.url.searchParams.get("next"));
 
-  let email = $state("");
-  let password = $state("");
+  let email = $state("max@clokr.de");
+  let password = $state("mitarbeiter5678");
   let error = $state("");
   let loading = $state(false);
   let showPassword = $state(false);

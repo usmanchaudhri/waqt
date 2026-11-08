@@ -109,6 +109,8 @@ function mapParts(raw: string): string {
     "No company shutdowns set up for $1.",
   );
   out = out.replace(/(^|[\s>])Woche (\d{4}-\d{2}-\d{2})/g, "$1Week $2");
+  out = out.replace(/\bKW\b/g, "Week");
+  out = out.replace(/\bvor (\d+) Min\./g, "$1 min ago");
   out = out.replace(
     /Summe über (\d+) (?:Personen|Person|people|People)/g,
     "Total across $1 people",
