@@ -3243,6 +3243,41 @@ button.approval-row:disabled {
 
 /* The Waqt lockup is deep green, drawn for a light surface. On a dark
    sidebar or card it needs the same ivory field it was designed on. */
+/* Phone layout. The people clocking in are standing at a yard and reading
+   a small screen in daylight. rem type follows the root; the sizes written
+   in px (buttons, card labels, view tabs) need their own step up. The clock
+   start/stop control is sized with the timer card, not here. */
+@media (max-width: 960px) {
+  html {
+    font-size: 17px;
+  }
+  .btn {
+    font-size: 15px;
+    min-height: 48px;
+    padding: 12px 18px;
+  }
+  .btn.sm {
+    font-size: 14px;
+    min-height: 44px;
+    padding: 8px 14px;
+  }
+  .card-title,
+  .kpi .label,
+  .kpi-label {
+    font-size: 12.5px;
+  }
+  .card-sub {
+    font-size: 15px;
+  }
+  .kpi .delta,
+  .kpi-delta {
+    font-size: 14px;
+  }
+  .view-tab {
+    font-size: 16px;
+  }
+}
+
 html[data-mode="dark"] img[src*="clokr-wordmark"],
 html[data-mode="dark"] img[src*="clokr-logo"],
 html[data-mode="dark"] img[src*="clokr-icon"] {

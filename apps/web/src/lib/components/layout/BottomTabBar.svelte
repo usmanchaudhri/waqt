@@ -218,7 +218,7 @@
   }
 
   .tab-label {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.01em;
     line-height: 1.15;

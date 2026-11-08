@@ -3387,15 +3387,36 @@
     :global(.timer-card-wrap .timer-hd-right) {
       text-align: left;
     }
+    :global(.timer-card-wrap .timer-hd-title) {
+      font-size: 13px;
+    }
+    :global(.timer-card-wrap .timer-status) {
+      font-size: 16px;
+    }
+    :global(.timer-card-wrap .timer-now) {
+      font-size: 17px;
+    }
     :global(.timer-card-wrap .timer-display) {
-      font-size: 48px;
+      font-size: 56px;
+    }
+    :global(.timer-card-wrap .timer-sub) {
+      font-size: 18px;
+    }
+    :global(.timer-card-wrap .timer-progress-labels) {
+      font-size: 14px;
     }
     :global(.timer-card-wrap .timer-foot) {
       flex-direction: column;
+      gap: 12px;
     }
+    /* Thumb target for someone clocking in outdoors, often one-handed. */
     :global(.timer-card-wrap .timer-cta-primary),
     :global(.timer-card-wrap .timer-cta-ghost) {
       width: 100%;
+      min-height: 60px;
+      padding: 16px 20px;
+      font-size: 18px;
+      font-weight: 600;
     }
   }
 </style>

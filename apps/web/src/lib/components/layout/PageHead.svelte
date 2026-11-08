@@ -157,6 +157,15 @@
   }
 
   @media (max-width: 720px) {
+    .eyebrow {
+      font-size: 16px;
+    }
+    .page-head h1 {
+      font-size: clamp(32px, 8vw, 40px);
+    }
+    .page-head .sub {
+      font-size: 16px;
+    }
     .page-head {
       flex-direction: column;
       align-items: flex-start;
