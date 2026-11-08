@@ -112,6 +112,17 @@ function mapParts(raw: string): string {
   out = out.replace(/Pauschale: (\d+) Min\./g, "Flat rate: $1 min");
   out = out.replace(/Gesamt: (\d+) Min\./g, "Total: $1 min");
   out = out.replace(
+    /(\d+) Arbeitstage bisher(?:\s*·\s*(\d+) läuft)?/g,
+    (_, days: string, running?: string) =>
+      running ? `${days} workdays so far · ${running} running` : `${days} workdays so far`,
+  );
+  out = out.replace(/(\d+) läuft/g, "$1 running");
+  out = out.replace(
+    /von ([\d.,]+) gesamt \(([\d.,]+) Anspruch \+ ([\d.,]+) Übertrag Vorjahr\)/g,
+    "of $1 total ($2 entitlement + $3 carried over from last year)",
+  );
+  out = out.replace(/von ([\d.,]+) gesamt/g, "of $1 total");
+  out = out.replace(
     /Der Zeitraum (\S+)–jetzt wird als Pause erfasst\. Der heutige Eintrag wird dadurch wieder geöffnet, seine Netto-Arbeitszeit sinkt und der Pausenwert wird neu berechnet\./g,
     "The period $1–now is recorded as a break. Today's entry is opened again, its net working time goes down, and the break total is recalculated.",
   );

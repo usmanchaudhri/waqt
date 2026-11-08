@@ -346,7 +346,7 @@
   .mehr-section-label {
     margin: 0;
     padding: var(--s-4) 18px var(--s-1);
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -364,7 +364,7 @@
     color: var(--text);
     text-decoration: none;
     font-family: var(--font-sans);
-    font-size: 14.5px;
+    font-size: 16px;
     font-weight: 500;
     transition:
       background 120ms var(--ease),
