@@ -62,7 +62,7 @@ jobs:
       dispatch: ${{ steps.decide.outputs.dispatch }}
       sha: ${{ steps.decide.outputs.sha }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: .github/scripts
           persist-credentials: false
@@ -98,7 +98,7 @@ jobs:
       contents: read # checkout of .github/scripts and main's tip lookup
       actions: write # dispatch build-push.yml (the narrowest scope GitHub offers for this)
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: .github/scripts
           persist-credentials: false
